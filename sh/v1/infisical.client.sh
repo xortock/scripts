@@ -1,6 +1,10 @@
 #!/bin/sh
 
-install_and_configure() {
+infisical:hello() {
+  echo "Hello from Infisical client script!"
+}
+
+infisical:install_and_configure() {
   curl -1sLf \
     'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.alpine.sh' |
     bash
@@ -23,7 +27,7 @@ install_and_configure() {
   export INFISICAL_TOKEN=$(infisical login --method=universal-auth --client-id=$INFISICAL_CLIENT_ID --client-secret=$INFISICAL_CLIENT_SECRET --silent --plain)
 }
 
-create_secret_if_not_exists() {
+infisical:create_secret_if_not_exists() {
   local secret_name=$1
   local secret_value=$2
   local project_id=$3
