@@ -46,6 +46,20 @@ infisical:apk:install_and_configure() {
   export INFISICAL_TOKEN=$(infisical login --method=universal-auth --client-id=$INFISICAL_CLIENT_ID --client-secret=$INFISICAL_CLIENT_SECRET --silent --plain)
 }
 
+infisical:npm:install_and_configure() {
+  npm install -g @infisical/cli
+
+  export INFISICAL_DISABLE_UPDATE_CHECK=true
+
+  if [ -z "$INFISICAL_CLIENT_ID" ] || [ -z "$INFISICAL_CLIENT_SECRET" ]; then
+    echo "Error: INFISICAL_CLIENT_ID and INFISICAL_CLIENT_SECRET must be set."
+    exit 1
+  fi
+
+  export INFISICAL_TOKEN=$(infisical login --method=universal-auth --client-id=$INFISICAL_CLIENT_ID --client-secret=$INFISICAL_CLIENT_SECRET --silent --plain)
+}
+
+
 infisical:create_secret_if_not_exists() {
   local secret_name=$1
   local secret_value=$2
