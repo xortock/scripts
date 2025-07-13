@@ -1,9 +1,5 @@
 #!/bin/sh
 
-infisical:hello() {
-  echo "Hello from Infisical client script!"
-}
-
 infisical:install_and_configure() {
   curl -1sLf \
     'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.alpine.sh' |
@@ -40,4 +36,11 @@ infisical:create_secret_if_not_exists() {
   else
     echo $existing_secret
   fi
+}
+
+infisical:get_secret() {
+  local secret_name=$1
+  local project_id=$2
+
+  infisical secrets --projectId=$project_id get $secret_name --plain
 }

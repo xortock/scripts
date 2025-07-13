@@ -1,6 +1,29 @@
-#!/bin/bash
+#!/bin/sh
 
-create_secret_if_not_exists() {
+infisical:install_and_configure() {
+  curl -1sLf \
+    'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.alpine.sh' |
+    bash
+
+  apk update
+
+  if [ -z $1]; then 
+    apk add infisical
+  else 
+    apk add infisical=$1
+  fi
+
+  export INFISICAL_DISABLE_UPDATE_CHECK=true
+
+  if [ -z "$INFISICAL_CLIENT_ID" ] || [ -z "$INFISICAL_CLIENT_SECRET" ]; then
+    echo "Error: INFISICAL_CLIENT_ID and INFISICAL_CLIENT_SECRET must be set."
+    exit 1
+  fi
+
+  export INFISICAL_TOKEN=$(infisical login --method=universal-auth --client-id=$INFISICAL_CLIENT_ID --client-secret=$INFISICAL_CLIENT_SECRET --silent --plain)
+}
+
+infisical:create_secret_if_not_exists() {
   local secret_name=$1
   local secret_value=$2
   local project_id=$3
@@ -13,4 +36,11 @@ create_secret_if_not_exists() {
   else
     echo $existing_secret
   fi
+}
+
+infisical:get_secret() {
+  local secret_name=$1
+  local project_id=$2
+
+  infisical secrets --projectId=$project_id get $secret_name --plain
 }
