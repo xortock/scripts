@@ -5,12 +5,12 @@ infisical:install_and_configure() {
     'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.alpine.sh' |
     bash
 
-  apt update
+  apt-get update
 
   if [ -z $1]; then 
-    apt install infisical
+    apt-get install infisical
   else 
-    apt install infisical=$1
+    apt-get install infisical=$1
   fi
 
   export INFISICAL_DISABLE_UPDATE_CHECK=true
@@ -28,12 +28,12 @@ infisical:apk:install_and_configure() {
     'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.alpine.sh' |
     bash
 
-  apt update
+  apk update
 
   if [ -z $1]; then 
-    apt install infisical
+    apk add infisical
   else 
-    apt install infisical=$1
+    apk add infisical=$1
   fi
 
   export INFISICAL_DISABLE_UPDATE_CHECK=true
