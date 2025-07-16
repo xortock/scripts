@@ -23,7 +23,7 @@ infisical_install_and_configure() {
   export INFISICAL_TOKEN=$(infisical login --method=universal-auth --client-id=$INFISICAL_CLIENT_ID --client-secret=$INFISICAL_CLIENT_SECRET --silent --plain)
 }
 
-infisical_apk:install_and_configure() {
+infisical_apk_install_and_configure() {
   curl -1sLf \
     'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.alpine.sh' |
     bash
@@ -46,7 +46,7 @@ infisical_apk:install_and_configure() {
   export INFISICAL_TOKEN=$(infisical login --method=universal-auth --client-id=$INFISICAL_CLIENT_ID --client-secret=$INFISICAL_CLIENT_SECRET --silent --plain)
 }
 
-infisical_npm:install_and_configure() {
+infisical_npm_install_and_configure() {
   npm install -g @infisical/cli
 
   export INFISICAL_DISABLE_UPDATE_CHECK=true
