@@ -1,6 +1,6 @@
 #!/bin/sh
 
-infisical:install_and_configure() {
+infisical_install_and_configure() {
   curl -1sLf \
     'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.deb.sh' |
     bash
@@ -23,7 +23,7 @@ infisical:install_and_configure() {
   export INFISICAL_TOKEN=$(infisical login --method=universal-auth --client-id=$INFISICAL_CLIENT_ID --client-secret=$INFISICAL_CLIENT_SECRET --silent --plain)
 }
 
-infisical:apk:install_and_configure() {
+infisical_apk:install_and_configure() {
   curl -1sLf \
     'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.alpine.sh' |
     bash
@@ -46,7 +46,7 @@ infisical:apk:install_and_configure() {
   export INFISICAL_TOKEN=$(infisical login --method=universal-auth --client-id=$INFISICAL_CLIENT_ID --client-secret=$INFISICAL_CLIENT_SECRET --silent --plain)
 }
 
-infisical:npm:install_and_configure() {
+infisical_npm:install_and_configure() {
   npm install -g @infisical/cli
 
   export INFISICAL_DISABLE_UPDATE_CHECK=true
@@ -60,7 +60,7 @@ infisical:npm:install_and_configure() {
 }
 
 
-infisical:create_secret_if_not_exists() {
+infisical_create_secret_if_not_exists() {
   local secret_name=$1
   local secret_value=$2
   local project_id=$3
@@ -75,7 +75,7 @@ infisical:create_secret_if_not_exists() {
   fi
 }
 
-infisical:get_secret() {
+infisical_get_secret() {
   local secret_name=$1
   local project_id=$2
 
