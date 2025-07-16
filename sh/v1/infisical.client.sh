@@ -2,7 +2,7 @@
 
 infisical:install_and_configure() {
   curl -1sLf \
-    'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.alpine.sh' |
+    'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.deb.sh' |
     bash
 
   apt-get update
