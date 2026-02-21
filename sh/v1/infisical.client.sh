@@ -25,8 +25,7 @@ infisical_install_and_configure() {
 
 infisical_apk_install_and_configure() {
   curl -1sLf \
-    'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.alpine.sh' |
-    bash
+    'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.alpine.sh' | distro=alpine bash
 
   apk update
 
