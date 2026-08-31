@@ -67,7 +67,7 @@ infisical_create_secret_if_not_exists() {
   local existing_secret=$(infisical secrets --projectId=$project_id get $secret_name --plain)
 
   if [ -z $existing_secret ]; then
-    infisical secrets --projectId=$project_id set $secret_name=$secret_value
+    infisical secrets --projectId=$project_id set $secret_name=$secret_value >/dev/null
     echo $secret_value
   else
     echo $existing_secret
